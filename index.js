@@ -1,11 +1,11 @@
 
 import express from 'express';
-import studentsRouter from './routes/studentsRoutes.js';
+import studentRouter from './routers/studentsRouters.js';
+
 const app = express();
 app.use(express.json());
 
-app.use('/', studentsRouter);
-
+app.use('/', studentRouter);
 app.get('/users', (req, res) => {
     console.log("hello this is");
     res.send("hello this is from backend");

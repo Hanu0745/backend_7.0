@@ -1,13 +1,12 @@
 
-const getStudents = (req, res) => {
-    //get data from db
-    let stdData = {name: "aditya", roll: "1234"};
-    res.status(200).json({data: stdData});
+const getStudentsDetails = (req, res) => {
+    const mydata = {name: "thub", roll: "1234"}; //db
+    res.send(mydata);
 };
-
 const addStudents = (req, res) => {
-    //add data
-    res.status(201).json({message: "data added"});
-}
-
-export {getStudents, addStudents};
+    const data = req.body;
+    console.log(data);
+    //logi to add data into db
+    res.send("data added");
+};
+export {getStudentsDetails, addStudents};
