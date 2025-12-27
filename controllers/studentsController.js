@@ -2,10 +2,8 @@ import student from "../models/studentsModels.js";
 
 const getStudentsDetails = async(req, res) => {
     try{
-            // const mydata = await student.find();
-            // const mydata = await student.findOne();
-            const mydata = await student.findById({_id: "694b80caf0cee6258678668e"})
-            res.status(200).json(mydata);
+        const mydata = await student.find();
+        res.status(200).json(mydata);
     }catch(error){
         console.log(error);
         res.status(500).json({error: error.message})
@@ -24,4 +22,28 @@ const addStudents = async(req, res) => {
         res.status(500).json({error: error.message})
     }
 };
-export {getStudentsDetails, addStudents};
+const getStudentById = async (req, res) => {
+    try{
+        const id = req.params.userid;
+        console.log("id :", id)
+        const data = await student.findById({_id: id});
+        console.log(data);
+        res.status(200).json(data);
+    }catch(error){
+        res.status(500).json({error: error.message})
+    }
+};
+// This is for testing 👀⁉️
+const getStudentsDetailsWithFilters = async(req, res) => {
+    try{
+        const {stdBranch, stdCollege, stdCgpa} = req.query;
+        console.log("stdBranch :", stdBranch);
+        console.log("stdCollege :", stdCollege);
+        console.log("stdCgpa :", stdCgpa);
+        res.status(200).json("success");
+    }catch(error){
+        res.status(500).json({error: error.message})
+    }
+
+}
+export {getStudentsDetails, addStudents, getStudentById, getStudentsDetailsWithFilters};

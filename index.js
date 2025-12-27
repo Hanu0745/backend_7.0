@@ -17,6 +17,6 @@ app.get('/users', (req, res) => {
     res.send("hello this is from backend");
 })
 
-app.listen(7007, () => {
-    console.log("server running at port 7007")
+app.listen(2885, () => {
+    console.log("server running at port 2885")
 });
