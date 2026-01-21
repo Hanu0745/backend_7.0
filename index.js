@@ -13,7 +13,7 @@ app.use(cors());
 app.use('/uploads', express.static(path.join('./uploads')));
 
 // database connection
-mongoose.connect("mongodb+srv://bhanumanthu450_db_user:hanu123@cluster0.ypr52oi.mongodb.net/").then(() => console.log("db connected"))
+mongoose.connect("<Your MongoDB Connection String>").then(() => console.log("db connected"))
     .catch((error) => console.log(error));
 
 // student routes
