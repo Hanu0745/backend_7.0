@@ -9,10 +9,17 @@ import authRouter from './routers/authRouter.js';
 import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
+import coockieParser from 'cookie-parser';
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+// cors configuration
+app.use(cors({
+    origin: 'http://localhost:5173', // frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true // to allow cookies
+}));
+app.use(coockieParser());
 // static folder for uploads to be accessible 
 app.use('/uploads', express.static(path.join('./uploads')));
 
