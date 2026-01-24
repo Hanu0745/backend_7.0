@@ -1,6 +1,7 @@
 
 import jwt from "jsonwebtoken";
 
+// authorization middleware with headers
 const authrization = (req, res, next) => {
   const authheader = req.headers["authorization"];
   console.log(authheader);
@@ -16,4 +17,17 @@ const authrization = (req, res, next) => {
   });
 };
 
-export {authrization};
+// authorization middleware with cookies
+const authrizationWithCookies = (req, res, next) => {
+  const token = req.cookies.token;
+
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
+    if (error) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+};
+
+export { authrization, authrizationWithCookies };
