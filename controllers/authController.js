@@ -40,7 +40,7 @@ const userLogin = async (req, res) => {
         if (!checkpass) return res.status(401).send("password not matched");
         console.log(process.env.JWT_SECRET);
         //generate jwt
-        const jwtoken = jwt.sign({ userName: userEmail }, process.env.JWT_SECRET, { expiresIn: 60 });
+        const jwtoken = jwt.sign({ userName: userEmail }, process.env.JWT_SECRET, { expiresIn: '5m' });
         console.log("token : ", jwtoken);
 
         // set cookie
@@ -48,7 +48,7 @@ const userLogin = async (req, res) => {
             httpOnly: true,
             secure: false,
             sameSite: 'strict',
-            maxAge: 60 * 1000 * 2 // 2 minutes
+            maxAge: 60 * 1000 * 5 // 5 minutes
         })
         return res.status(200).json("login successful");
 
