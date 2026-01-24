@@ -39,7 +39,7 @@ const userLogin = async (req, res) => {
     if(!checkpass) return res.status(401).send("password not matched");
     console.log(process.env.JWT_SECRET);
     //generate jwt
-    const jwtoken = jwt.sign({userName: userEmail}, process.env.JWT_SECRET, {expiresIn: 60});
+    const jwtoken = jwt.sign({userName: userEmail}, process.env.JWT_SECRET, {expiresIn: '5m'});
 
     res.status(200).send({token: jwtoken, message: "login success"});
 } catch (error) {
